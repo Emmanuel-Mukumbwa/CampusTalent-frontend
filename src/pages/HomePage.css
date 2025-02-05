@@ -1,0 +1,118 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-blend-mode: overlay;
+  position: relative;
+}
+
+.hero-text {
+  color: #fff;
+  max-width: 50%; /* Limits the width of the text for better alignment */
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-buttons a {
+  margin: 10px 0; /* Adds spacing between buttons */
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+}
+
+/* Scroll Down Indicator */
+.scroll-down-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1rem;
+  animation: fade-in-out 2s infinite;
+  z-index: 3;
+}
+
+.scroll-down-indicator .arrow {
+  margin-top: 10px;
+  width: 20px;
+  height: 20px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: bounce 1.5s infinite;
+}
+
+/* Keyframe Animations */
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(45deg);
+  }
+}
+
+.popular-services-section {
+  transition: background-color 0.3s ease;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.features-section {
+  transition: background-color 0.3s ease;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6347; /* Change to a different color on hover */
+}
+
+.btn-link:hover {
+  text-decoration: underline; /* Underline on hover for the login link */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker shade on hover for the primary button */
+  border-color: #0056b3; /* Match border color with background */
+}
