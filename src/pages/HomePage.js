@@ -71,55 +71,69 @@ const HomePage = () => {
     <div className="homepage">
       {/* Header Section */}
       <header className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div className="container">
-          {/* Brand / Logo */}
-          <Link className="navbar-brand" to="/">
-            Campus<span style={{ color: '#ff6347' }}>Talent</span>
+  <div className="container">
+    {/* Brand / Logo */}
+    <Link className="navbar-brand" to="/">
+      Campus<span style={{ color: "#ff6347" }}>Talent</span>
+    </Link>
+
+    {/* Toggle button for mobile */}
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#headerNavbar"
+      aria-controls="headerNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+
+    {/* Navbar Items */}
+    <div className="collapse navbar-collapse" id="headerNavbar">
+      <ul className="navbar-nav me-auto">
+        <li className="nav-item">
+          <a className="nav-link" href="#why-campus-talent">
+            Why Campus Talent
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#popular-services">
+            Popular Services
+          </a>
+        </li>
+      </ul>
+
+      {/* Search Bar */}
+      <form className="d-flex mx-auto">
+        <input
+          type="text"
+          className="form-control me-2"
+          placeholder="Search services, students..."
+          style={{ borderRadius: "20px", borderColor: "#007bff" }}
+        />
+        <button className="btn btn-primary" style={{ borderRadius: "20px" }}>
+          Search
+        </button>
+      </form>
+
+      {/* Right-side Links */}
+      <ul className="navbar-nav ms-auto align-items-center">
+        <li className="nav-item">
+          <Link to="/login" className="btn btn-link me-3" style={{ color: "#007bff", textDecoration: "none" }}>
+            Login
           </Link>
-
-          {/* Toggle button for mobile */}
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNavbar">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="headerNavbar">
-            {/* Navigation Links */}
-            <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2 mb-lg-0">
-              <div className="container">
-                <ul className="navbar-nav me-4">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#why-campus-talent">Why Campus Talent</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#popular-services">Popular Services</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-
-            {/* Search Bar */}
-            <form className="d-flex mx-auto">
-              <input
-                type="text"
-                className="form-control me-2"
-                placeholder="Search services, students..."
-                style={{ borderRadius: '20px', borderColor: '#007bff' }} // Rounded corners and custom border color
-              />
-              <button className="btn btn-primary" style={{ borderRadius: '20px' }}>Search</button> {/* Rounded button */}
-            </form>
-
-            {/* Right-side Links */}
-            <ul className="navbar-nav ms-auto align-items-center">
-              <li className="nav-item">
-                <Link to="/login" className="btn btn-link me-3" style={{ color: '#007bff', textDecoration: 'none' }}>Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/signup" className="btn btn-primary" style={{ borderRadius: '20px' }}>Sign Up</Link> {/* Rounded button */}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+        </li>
+        <li className="nav-item">
+          <Link to="/signup" className="btn btn-primary" style={{ borderRadius: "20px" }}>
+            Sign Up
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
 
       {/* Hero Section */}
       <div className="hero-section d-flex align-items-center" style={heroStyle}>
