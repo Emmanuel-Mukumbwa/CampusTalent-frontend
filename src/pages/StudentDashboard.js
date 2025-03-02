@@ -1,8 +1,8 @@
+// src/pages/StudentDashboard.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaBell, FaUserCircle, FaMedal } from 'react-icons/fa';
 
-// Dummy data (same as before)
 const userProfile = {
   name: 'Emmanuel Mukumbwa',
   email: 'emmanuel@example.com',
@@ -51,7 +51,6 @@ const activeProjectsData = [
 ];
 
 const StudentDashboard = () => {
-  // States for filtering engagements
   const [engagementFilter, setEngagementFilter] = useState('all');
   const [engagements] = useState(engagementsData);
   const [activeProjects] = useState(activeProjectsData);
@@ -72,11 +71,21 @@ const StudentDashboard = () => {
           <div className="collapse navbar-collapse" id="topNavbar">
             {/* Navigation Menu Items */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><Link to="/engagements" className="nav-link">Opportunities</Link></li>
-              <li className="nav-item"><Link to="/active-projects" className="nav-link">Active Projects</Link></li>
-              <li className="nav-item"><Link to="/student/recommended-opportunities" className="nav-link">Recommended Opportunities</Link></li>
-              <li className="nav-item"><Link to="/student/portfolio" className="nav-link">Portfolio</Link></li>
-              <li className="nav-item"><Link to="/student/payment-history" className="nav-link">Payment History</Link></li>
+              <li className="nav-item">
+                <Link to="/engagements" className="nav-link">Opportunities</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/active-projects" className="nav-link">Active Projects</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/student/recommended-opportunities" className="nav-link">Recommended Opportunities</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/student/portfolio" className="nav-link">Portfolio</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/student/payment-history" className="nav-link">Payment History</Link>
+              </li>
             </ul>
             {/* Search Bar */}
             <form className="d-flex mx-auto">
@@ -86,7 +95,7 @@ const StudentDashboard = () => {
             {/* Right-side Icons */}
             <ul className="navbar-nav ms-auto align-items-center">
               <li className="nav-item me-3 position-relative">
-                <Link className="nav-link" to="/inbox">
+                <Link className="nav-link" to="/student/inbox">
                   <FaBell size={20} />
                   {notificationsData.filter(n => n.type === 'message').length > 0 && (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -96,7 +105,7 @@ const StudentDashboard = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link" to="/student/profile">
                   {userProfile.profilePicture ? (
                     <img src={userProfile.profilePicture} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
                   ) : (
@@ -109,7 +118,7 @@ const StudentDashboard = () => {
         </div>
       </nav>
 
-      {/* Main Content Area (existing grid layout) */}
+      {/* Main Content Area */}
       <div className="container my-4">
         {/* Profile Summary Section */}
         <div className="card shadow-sm mb-4">
@@ -154,6 +163,7 @@ const StudentDashboard = () => {
                 </div>
               </div>
               <div className="card-body">
+                {/* Engagements listing – you can fill in your details */}
                 {filteredEngagements.length ? (
                   filteredEngagements.map((engagement) => (
                     <div key={engagement.id} className="card mb-3 border-0 shadow-sm" style={{ transition: 'transform 0.2s' }}
@@ -181,6 +191,7 @@ const StudentDashboard = () => {
                 <h5 className="mb-0">Active Projects</h5>
               </div>
               <div className="card-body overflow-auto" style={{ maxHeight: '300px' }}>
+                {/* Active projects listing */}
                 {activeProjects.length ? (
                   activeProjects.map((project) => (
                     <div key={project.id} className="mb-3 p-2 border rounded" style={{ transition: 'background-color 0.2s' }}
@@ -202,6 +213,7 @@ const StudentDashboard = () => {
                 <h5 className="mb-0">Inbox / Activity</h5>
               </div>
               <div className="card-body overflow-auto" style={{ maxHeight: '300px' }}>
+                {/* Notifications listing */}
                 {notificationsData.length ? (
                   notificationsData.map((notif) => (
                     <div key={notif.id} className="mb-2 p-2 border rounded" style={{ transition: 'opacity 0.2s' }}
@@ -219,6 +231,7 @@ const StudentDashboard = () => {
           </div>
         </div>
       </div>
+
       {/* Example Notification Pop-Up */}
       <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 11 }}>
         <div className="toast show" role="alert">

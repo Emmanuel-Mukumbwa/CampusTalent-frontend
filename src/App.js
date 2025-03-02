@@ -20,6 +20,8 @@ import Engagements from './pages/student/Engagements';
 import RecommendedOpportunities from './pages/student/RecommendedOpportunities';
 import Portfolio from './pages/student/Portfolio';
 import PaymentHistory from './pages/student/PaymentHistory';
+import InboxPage from './pages/student/InboxPage';
+import ProfilePage from './pages/student/ProfilePage';
 
 // Recruiter pages
 import RecruiterDashboard from './pages/RecruiterDashboard';
@@ -40,7 +42,6 @@ import MessagesPage from './pages/MessagesPage';
 import JobPostings from './pages/JobPostingsTab';
 import Applications from './pages/ApplicationsTab';
 import CompanyProfile from './pages/CompanyProfileTab';
-import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -71,6 +72,8 @@ function App() {
             <Route path="/engagements" element={<Engagements />} />
             <Route path="/contracts2" element={<StudentContracts />} />
             <Route path="/messages" element={<MessagesPage />} />
+            <Route path="/student/inbox" element={<InboxPage />} />
+            <Route path="/student/profile" element={<ProfilePage />} />
 
             {/* Recruiter Routes */}
             <Route path="/recruiter/dashboard" element={<RecruiterDashboard />}>

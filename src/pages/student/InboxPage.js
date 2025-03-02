@@ -1,19 +1,23 @@
-// src/pages/recruiter/Inbox.js
 import React, { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-const Inbox = () => {
-  // Dummy current user for recruiter
-  const currentUser = 'Recruiter ABC';
+const InboxPage = () => {
+  const [messages, setMessages] = useState([]);
+  const [filter, setFilter] = useState('all'); // Options: all, unread, read, sent
+  const [selectedThread, setSelectedThread] = useState(null);
+  const [replyContent, setReplyContent] = useState('');
+  
+  // Dummy current user data
+  const currentUser = 'Emmanuel Mukumbwa';
 
-  // Dummy messages for recruiter inbox (thread-based)
+  // Dummy messages data
   const initialMessages = [
     {
       id: 1,
-      sender: 'Candidate John Doe',
+      sender: 'HR Department',
       recipient: currentUser,
-      subject: 'Application Inquiry',
-      content: 'I am interested in the Software Engineer Intern role.',
+      subject: 'Interview Invitation',
+      content: 'You are invited for an interview on February 20, 2025.',
       timestamp: '2025-02-10 09:00 AM',
       read: false,
       threadId: 1,
@@ -21,29 +25,29 @@ const Inbox = () => {
     {
       id: 2,
       sender: currentUser,
-      recipient: 'Candidate John Doe',
-      subject: 'Re: Application Inquiry',
-      content: 'Thank you for your interest. Please send your portfolio.',
-      timestamp: '2025-02-10 09:30 AM',
+      recipient: 'HR Department',
+      subject: 'Re: Interview Invitation',
+      content: 'Thank you for the invitation. I confirm my availability.',
+      timestamp: '2025-02-10 10:00 AM',
       read: true,
       threadId: 1,
     },
     {
       id: 3,
-      sender: 'Candidate Jane Smith',
+      sender: 'Career Services',
       recipient: currentUser,
-      subject: 'Job Application',
-      content: 'Please review my application for the Full-Stack Developer position.',
+      subject: 'Workshop Invitation',
+      content: 'Join our resume workshop on February 25, 2025.',
       timestamp: '2025-02-11 11:00 AM',
       read: false,
       threadId: 2,
     },
   ];
 
-  const [messages, setMessages] = useState(initialMessages);
-  const [filter, setFilter] = useState('all'); // Options: all, unread, read, sent
-  const [selectedThread, setSelectedThread] = useState(null);
-  const [replyContent, setReplyContent] = useState('');
+  useEffect(() => {
+    // In production, fetch messages from your backend.
+    setMessages(initialMessages);
+  }, []);
 
   // Group messages into threads by threadId
   const threads = messages.reduce((acc, message) => {
@@ -52,19 +56,14 @@ const Inbox = () => {
     return acc;
   }, {});
 
-  // Filter threads based on selected filter
+  // Filter threads based on the selected filter
   const filteredThreads = Object.entries(threads).filter(([threadId, threadMessages]) => {
     if (filter === 'all') return true;
-    if (filter === 'unread') return threadMessages.some((msg) => !msg.read);
-    if (filter === 'read') return threadMessages.every((msg) => msg.read);
+    if (filter === 'unread') return threadMessages.some(msg => !msg.read);
+    if (filter === 'read') return threadMessages.every(msg => msg.read);
     if (filter === 'sent') return threadMessages[0].sender === currentUser;
     return true;
   });
-
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-    setSelectedThread(null);
-  };
 
   const handleSelectThread = (threadId) => {
     setSelectedThread(Number(threadId));
@@ -82,47 +81,39 @@ const Inbox = () => {
         read: true,
         threadId: selectedThread,
       };
-      // In production, send this reply to your backend
+      // In production, send this message to your backend (e.g., via fetch or axios)
       setMessages([...messages, newMessage]);
       setReplyContent('');
     }
   };
 
   return (
-    <div
-      className="container mt-5"
-      style={{
-        background: 'linear-gradient(to right, #e0f7fa, #ffffff)',
-        minHeight: '100vh',
-        padding: '20px',
-        borderRadius: '8px',
-      }}
-    >
+    <div className="container mt-5">
       <h2>Inbox</h2>
       <div className="row">
         {/* Sidebar Filters */}
         <div className="col-md-3">
           <button
             className={`btn btn-block mb-2 ${filter === 'all' ? 'btn-primary' : 'btn-outline-primary'}`}
-            onClick={() => handleFilterChange('all')}
+            onClick={() => { setFilter('all'); setSelectedThread(null); }}
           >
             All Messages
           </button>
           <button
             className={`btn btn-block mb-2 ${filter === 'unread' ? 'btn-primary' : 'btn-outline-primary'}`}
-            onClick={() => handleFilterChange('unread')}
+            onClick={() => { setFilter('unread'); setSelectedThread(null); }}
           >
             Unread Messages
           </button>
           <button
             className={`btn btn-block mb-2 ${filter === 'read' ? 'btn-primary' : 'btn-outline-primary'}`}
-            onClick={() => handleFilterChange('read')}
+            onClick={() => { setFilter('read'); setSelectedThread(null); }}
           >
             Read Messages
           </button>
           <button
             className={`btn btn-block mb-2 ${filter === 'sent' ? 'btn-primary' : 'btn-outline-primary'}`}
-            onClick={() => handleFilterChange('sent')}
+            onClick={() => { setFilter('sent'); setSelectedThread(null); }}
           >
             Sent Messages
           </button>
@@ -184,4 +175,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default InboxPage;

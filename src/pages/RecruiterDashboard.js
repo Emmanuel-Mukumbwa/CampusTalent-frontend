@@ -39,7 +39,7 @@ const RecruiterDashboard = () => {
               </li>
               <li className="nav-item">
                 <Link to="engagements" className="nav-link">
-                  Opportunities
+                  Engagements
                 </Link>
               </li>
               <li className="nav-item">
