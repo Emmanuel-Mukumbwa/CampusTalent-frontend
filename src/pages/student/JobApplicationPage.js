@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import headerImage from '../assets/images/application.jpg'; // Adjust the path as necessary
+import headerImage from '../../assets/images/application.jpg'; // Adjust the path as necessary
 
 const JobApplicationPage = () => {
   const { jobId } = useParams();

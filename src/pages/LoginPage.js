@@ -12,14 +12,14 @@ const LoginPage = () => {
     // Mock login logic - Replace with actual API logic
     if (email === 'student@example.com' && password === 'p') {
       localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userType', 'student');
+      localStorage.setItem('userRole', 'student');
       alert('Login successful!');
-      navigate('/dashboard'); // Redirect to student dashboard
+      navigate('/student/dashboard'); // Redirect to student dashboard
     } else if (email === 'recruiter@example.com' && password === 'p') {
       localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userType', 'recruiter');
+      localStorage.setItem('userRole', 'recruiter');
       alert('Login successful!');
-      navigate('/recruiter-dashboard'); // Redirect to recruiter dashboard
+      navigate('/recruiter/dashboard'); // Redirect to recruiter dashboard
     } else {
       alert('Invalid email or password. Please try again.');
     }
@@ -59,7 +59,9 @@ const LoginPage = () => {
       </form>
 
       <div className="text-center mt-3">
-        <p>Don't have an account? <Link to="/signup" className="text-primary">Sign Up</Link></p>
+        <p>
+          Don't have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
+        </p>
       </div>
     </div>
   );
