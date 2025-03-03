@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 // Student pages
 import HomePage from './pages/HomePage';
@@ -32,6 +32,15 @@ import RecruiterEngagementsTabs from './pages/recruiter/RecruiterEngagementsTabs
 import Contracts from './pages/recruiter/Contracts';
 import CandidateProfile from './pages/recruiter/CandidateProfile';
 
+// Admin pages
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminOverview from './pages/admin/DashboardOverview1';
+import UserManagement from './pages/admin/UserManagement';
+import ContentModeration from './pages/admin/ContentModeration';
+import TransactionMonitoring from './pages/admin/TransactionMonitoring';
+import Settings from './pages/admin/Settings';
+import AuditLogs from './pages/admin/AuditLogs';
+
 // Other pages
 import JobListingPage from './pages/JobListingPage';
 import ApplicationTrackingPage from './pages/ApplicationTrackingPage';
@@ -45,7 +54,7 @@ import CompanyProfile from './pages/CompanyProfileTab';
 
 function App() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  const userRole = localStorage.getItem('userRole'); // "student" or "recruiter"
+  const userRole = localStorage.getItem('userRole'); // "student", "recruiter", or "admin"
 
   return (
     <Router>
@@ -84,6 +93,17 @@ function App() {
               <Route path="contracts" element={<Contracts />} />
             </Route>
             <Route path="/recruiter/candidate/:candidateId" element={<CandidateProfile />} />
+
+            {/* Admin Routes */}
+            <Route path="/admin/dashboard" element={isLoggedIn && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/login" replace />} >
+            <Route index element={<AdminOverview />} />
+            <Route path="overview" element={<AdminOverview />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="content" element={<ContentModeration />} />
+            <Route path="transactions" element={<TransactionMonitoring />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="audit-logs" element={<AuditLogs />} />
+          </Route>
 
             {/* Other Routes */}
             <Route path="/job-listings" element={<JobListingPage />} />
